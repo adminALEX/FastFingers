@@ -46,14 +46,30 @@ public class App implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(! (e.getKeyChar() == ' ')){
-            res+= e.getKeyChar();
-            System.out.println(res);
-        }else{
+        char ch = e.getKeyChar();        
+        if(ch != 32 ){
+            if(ch==8){
+                StringBuilder sb = new StringBuilder(res);
+                try{
+                sb.setLength(sb.length() - 1);
+                }catch (Exception s){
+                    return;
+                }
+                res = sb.toString();
+                return;
+            }
+            else{
+                res+= e.getKeyChar();
+                System.out.println(res);
+            }
+        }
+        else{
            if(res.equals(qString.peek())){
             System.out.println("Same");
-            text.setText("");
-            res ="";
+
+            qString.remove();
+            text.setText();
+            res = "";
            }
         }
         
@@ -81,11 +97,11 @@ public class App implements KeyListener{
             for(int i=0;i<10;i++){
                 index = r.nextInt(370106);
                 qIndex.add(index);
-                qString.add(list.get(qIndex.peek()));
+                qString.add(list.get(qIndex.remove()));
                 para+=list.get(index)+" ";
                 }    
 
         return para;
     }
-
+    
 }
