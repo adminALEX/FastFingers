@@ -33,7 +33,6 @@ public class App implements KeyListener{
         text = new JTextField(10);
         App a = new App();
         text.addKeyListener(a);
-        text.addKeyListener(a);
         label.setText(generateLabel());
         jp.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 10));
         jp.add(label);
@@ -47,23 +46,23 @@ public class App implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //
+        if(! (e.getKeyChar() == ' ')){
+            res+= e.getKeyChar();
+            System.out.println(res);
+        }else{
+           if(res.equals(qString.peek())){
+            System.out.println("Same");
+            text.setText("");
+            res ="";
+           }
+        }
         
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         
-        if(! (e.getKeyChar() == ' ')){
-            res+= e.getKeyChar();
-            System.out.println(res);
-        }else{
-           if(res == qString.peek()){
-            System.out.println("Same");
-            qString.remove();
-           }
-           text.setText("");
-        }
+       
         
     }
     
@@ -82,7 +81,7 @@ public class App implements KeyListener{
             for(int i=0;i<10;i++){
                 index = r.nextInt(370106);
                 qIndex.add(index);
-                qString.add(list.get(index));
+                qString.add(list.get(qIndex.peek()));
                 para+=list.get(index)+" ";
                 }    
 
