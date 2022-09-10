@@ -10,7 +10,6 @@ import javax.swing.*;
 /**
  * App
  */
-
 public class App implements KeyListener{
 
         private static JFrame jFrame ;
